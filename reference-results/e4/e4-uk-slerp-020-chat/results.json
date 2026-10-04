@@ -1,0 +1,63 @@
+{
+  "results": {
+    "arc_challenge": {
+      "acc": 0.3643344709897611,
+      "acc_stderr": 0.014063260279882415,
+      "acc_norm": 0.3890784982935154,
+      "acc_norm_stderr": 0.014247309976045609
+    },
+    "arc_easy": {
+      "acc": 0.585016835016835,
+      "acc_stderr": 0.010110383151961137,
+      "acc_norm": 0.5349326599326599,
+      "acc_norm_stderr": 0.01023471305272367
+    },
+    "boolq": {
+      "acc": 0.6409785932721712,
+      "acc_stderr": 0.008390241754319913
+    },
+    "hellaswag": {
+      "acc": 0.43069109739095796,
+      "acc_stderr": 0.004941609820763584,
+      "acc_norm": 0.5544712208723361,
+      "acc_norm_stderr": 0.004960082528852445
+    },
+    "openbookqa": {
+      "acc": 0.312,
+      "acc_stderr": 0.02074059653648807,
+      "acc_norm": 0.432,
+      "acc_norm_stderr": 0.02217510926561316
+    },
+    "piqa": {
+      "acc": 0.6539717083786725,
+      "acc_stderr": 0.011098919626957382,
+      "acc_norm": 0.6719260065288357,
+      "acc_norm_stderr": 0.010954487135124223
+    },
+    "winogrande": {
+      "acc": 0.5943172849250198,
+      "acc_stderr": 0.013800206336014195
+    }
+  },
+  "versions": {
+    "arc_challenge": 0,
+    "arc_easy": 0,
+    "boolq": 1,
+    "hellaswag": 0,
+    "openbookqa": 0,
+    "piqa": 0,
+    "winogrande": 0
+  },
+  "config": {
+    "model": "hf-causal-experimental",
+    "model_args": "pretrained=<merged-checkpoint>,dtype=bfloat16,chat_template=true,chat_template_path=<fixed-gemma-chat-template>",
+    "num_fewshot": 0,
+    "batch_size": "2",
+    "batch_sizes": [],
+    "device": "cuda:0",
+    "no_cache": false,
+    "limit": null,
+    "bootstrap_iters": 100000,
+    "description_dict": {}
+  }
+}

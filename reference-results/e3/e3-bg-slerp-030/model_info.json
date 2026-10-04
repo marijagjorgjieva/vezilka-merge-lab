@@ -1,0 +1,5 @@
+{
+  "label": "VezilkaLLM-Instruct + Bulgarian, SLERP t=0.30",
+  "configuration": "configs/merge/e3/e3-bg-slerp-030.yaml",
+  "prompt_format": "plain"
+}

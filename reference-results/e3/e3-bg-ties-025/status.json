@@ -1,0 +1,28 @@
+{
+  "status": "success",
+  "exit_code": 0,
+  "started_utc": "2026-07-13T04:36:13.219717+00:00",
+  "finished_utc": "2026-07-13T06:19:37.439043+00:00",
+  "duration_seconds": 6204.219,
+  "model_label": "VezilkaLLM-Instruct + English + Bulgarian, TIES",
+  "tasks": [
+    "arc_challenge",
+    "arc_easy",
+    "boolq",
+    "hellaswag",
+    "openbookqa",
+    "piqa",
+    "winogrande"
+  ],
+  "limit": null,
+  "device": "cuda:0",
+  "batch_size": "1",
+  "write_out": true,
+  "results_json_exists": true,
+  "errors_detected": [],
+  "warnings_detected": [
+    "`torch_dtype` is deprecated! Use `dtype` instead!"
+  ],
+  "prompt_format": "plain",
+  "configuration": "configs/merge/e3/e3-bg-ties-025.yaml"
+}

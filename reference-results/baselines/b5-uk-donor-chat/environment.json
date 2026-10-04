@@ -1,0 +1,23 @@
+{
+  "wrapper_python": "3.13.12",
+  "wrapper_torch": "2.12.1",
+  "wrapper_transformers": "5.12.1",
+  "wrapper_datasets": "5.0.0",
+  "wrapper_pyarrow": "24.0.0",
+  "wrapper_numpy": "2.5.1",
+  "wrapper_accelerate": "1.6.0",
+  "wrapper_safetensors": "0.5.3",
+  "harness": {
+    "python": "3.11.14",
+    "torch_cuda": "13.0",
+    "cuda_available": "True",
+    "torch": "2.12.1",
+    "transformers": "4.57.6",
+    "datasets": "2.14.6",
+    "pyarrow": "14.0.2",
+    "numpy": "1.26.4",
+    "accelerate": "1.14.0",
+    "safetensors": "0.8.0"
+  },
+  "lvstk_commit": "b3652fc5ea759559adb049227a3c5a160859be35"
+}

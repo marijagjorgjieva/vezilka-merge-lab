@@ -1,0 +1,6 @@
+{
+  "label": "VezilkaLLM + English, SLERP t=0.40",
+  "configuration": "configs/merge/e1/e1-slerp-040.yaml",
+  "prompt_format": "chat",
+  "chat_template": "configs/evaluation/gemma_chat_template.jinja"
+}

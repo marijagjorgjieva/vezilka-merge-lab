@@ -1,0 +1,29 @@
+{
+  "status": "success",
+  "exit_code": 0,
+  "started_utc": "2026-07-14T02:47:40.661066+00:00",
+  "finished_utc": "2026-07-14T04:06:40.835077+00:00",
+  "duration_seconds": 4740.174,
+  "model_label": "models/mamaylm-gemma-3-4b-it-textonly",
+  "tasks": [
+    "arc_challenge",
+    "arc_easy",
+    "boolq",
+    "hellaswag",
+    "openbookqa",
+    "piqa",
+    "winogrande"
+  ],
+  "limit": null,
+  "device": "cuda:0",
+  "batch_size": "2",
+  "prompt_format": "chat",
+  "write_out": true,
+  "results_json_exists": true,
+  "errors_detected": [],
+  "warnings_detected": [
+    "`torch_dtype` is deprecated! Use `dtype` instead!"
+  ],
+  "model": "models/mamaylm-gemma-3-4b-it-textonly",
+  "chat_template": "configs/evaluation/gemma_chat_template.jinja"
+}

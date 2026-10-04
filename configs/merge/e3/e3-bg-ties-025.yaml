@@ -1,0 +1,22 @@
+# Configuration: e3-bg-ties-025
+# Recipient: finki-ukim/VezilkaLLM-Instruct
+# Donors: Leoxxxxh/Gemma-3-4B-IT-TextOnly, ./models/bggpt-gemma-3-4b-it-textonly
+# Method: ties
+# Donor weights and densities are specified per model below.
+merge_method: ties
+base_model: finki-ukim/VezilkaLLM-Instruct
+models:
+  - model: Leoxxxxh/Gemma-3-4B-IT-TextOnly
+    parameters:
+      density: 0.15
+      weight: 0.15
+  - model: ./models/bggpt-gemma-3-4b-it-textonly
+    parameters:
+      density: 0.25
+      weight: 0.35
+parameters:
+  normalize: true
+  int8_mask: true
+tokenizer_source: base
+chat_template: auto
+dtype: bfloat16

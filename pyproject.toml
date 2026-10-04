@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=81"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vezilka-merge-lab"
+version = "0.1.0"
+description = "Reproduce Vezilka Gemma 3 model merges and evaluate them on Macedonian benchmarks."
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+license = "Apache-2.0"
+dependencies = [
+    "accelerate==1.6.0",
+    "huggingface-hub==1.16.1",
+    "mergekit==0.1.4",
+    "python-dotenv==1.2.4",
+    "pyyaml==6.0.3",
+    "safetensors==0.5.3",
+    "torch==2.12.1",
+    "transformers==5.12.1",
+]
+
+[project.scripts]
+merge-model = "vezilka_merge_lab.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.uv]
+package = true

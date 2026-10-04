@@ -1,0 +1,5 @@
+{
+  "label": "VezilkaLLM-Instruct + English, SLERP t=0.05",
+  "configuration": "configs/merge/e2/e2-slerp-005.yaml",
+  "prompt_format": "plain"
+}

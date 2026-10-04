@@ -1,0 +1,6 @@
+{
+  "label": "models/mamaylm-gemma-3-4b-it-textonly",
+  "model": "models/mamaylm-gemma-3-4b-it-textonly",
+  "prompt_format": "chat",
+  "chat_template": "configs/evaluation/gemma_chat_template.jinja"
+}

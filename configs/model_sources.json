@@ -1,0 +1,28 @@
+{
+  "models": {
+    "finki-ukim/VezilkaLLM": {
+      "revision": "40ca45e06bc8297d8433a05e76b3ebf901b57ea9"
+    },
+    "finki-ukim/VezilkaLLM-Instruct": {
+      "revision": "094ecb36b3c9b08de04719201dbedd887bff8514"
+    },
+    "Leoxxxxh/Gemma-3-4B-IT-TextOnly": {
+      "revision": "53efb09537be5e9df741cf9b07b614e352ddea6c"
+    },
+    "models/bggpt-gemma-3-4b-it-textonly": {
+      "source": "INSAIT-Institute/BgGPT-Gemma-3-4B-IT",
+      "revision": "7a911c47ed3dd37ad923c5286cf0bfe6a3eea6f2",
+      "prepared_name": "bggpt-gemma-3-4b-it-textonly"
+    },
+    "models/mamaylm-gemma-3-4b-it-textonly": {
+      "source": "INSAIT-Institute/MamayLM-Gemma-3-4B-IT-v1.0",
+      "revision": "d412311be458242624cf1206c0679fa2fd0defdb",
+      "prepared_name": "mamaylm-gemma-3-4b-it-textonly"
+    }
+  },
+  "evaluator": {
+    "repository": "https://github.com/LVSTCK/macedonian-llm-eval",
+    "revision": "b3652fc5ea759559adb049227a3c5a160859be35",
+    "python": "3.11"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "label": "Leoxxxxh/Gemma-3-4B-IT-TextOnly",
+  "model": "Leoxxxxh/Gemma-3-4B-IT-TextOnly",
+  "prompt_format": "chat",
+  "chat_template": "configs/evaluation/gemma_chat_template.jinja"
+}

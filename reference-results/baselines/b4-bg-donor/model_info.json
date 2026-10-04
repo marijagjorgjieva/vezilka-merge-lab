@@ -1,0 +1,5 @@
+{
+  "label": "models/bggpt-gemma-3-4b-it-textonly",
+  "model": "models/bggpt-gemma-3-4b-it-textonly",
+  "prompt_format": "plain"
+}

@@ -1,0 +1,21 @@
+# Configuration: e3-bg-slerp-005
+# Recipient: finki-ukim/VezilkaLLM-Instruct
+# Donor: ./models/bggpt-gemma-3-4b-it-textonly
+# Method: slerp
+# Default coefficient: 0.05
+# Recipient embeddings and tied output head are preserved.
+merge_method: slerp
+base_model: finki-ukim/VezilkaLLM-Instruct
+models:
+  - model: finki-ukim/VezilkaLLM-Instruct
+  - model: ./models/bggpt-gemma-3-4b-it-textonly
+parameters:
+  t:
+    - filter: embed_tokens
+      value: 0.0
+    - filter: lm_head  # No-op on tied-embedding Gemma 3; kept for portability.
+      value: 0.0
+    - value: 0.05
+tokenizer_source: base
+chat_template: auto
+dtype: bfloat16

@@ -1,0 +1,5 @@
+{
+  "label": "VezilkaLLM-Instruct + English + Bulgarian, TIES",
+  "configuration": "configs/merge/e3/e3-bg-ties-025.yaml",
+  "prompt_format": "plain"
+}

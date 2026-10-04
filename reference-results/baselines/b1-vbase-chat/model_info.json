@@ -1,0 +1,6 @@
+{
+  "label": "finki-ukim/VezilkaLLM",
+  "model": "finki-ukim/VezilkaLLM",
+  "prompt_format": "chat",
+  "chat_template": "configs/evaluation/gemma_chat_template.jinja"
+}

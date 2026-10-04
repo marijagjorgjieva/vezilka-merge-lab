@@ -1,0 +1,30 @@
+diff --git a/lm_eval/evaluator.py b/lm_eval/evaluator.py
+--- a/lm_eval/evaluator.py
++++ b/lm_eval/evaluator.py
+@@ -1,3 +1,4 @@
+ import collections
++import hashlib
+ import itertools
+ import random
+@@ -94,11 +95,16 @@ def simple_evaluate(
+         lm = model
+ 
+     if not no_cache:
++        cache_name = (
++            (model if isinstance(model, str) else model.model.config._name_or_path)
++            + "_"
++            + model_args.replace("=", "-").replace(",", "_").replace("/", "-")
++            + ".db"
++        )
++        # Keep existing short cache names so completed runs remain reusable.
++        if len(cache_name.encode("utf-8")) > 240:
++            cache_name = hashlib.sha256(cache_name.encode("utf-8")).hexdigest() + ".db"
+         lm = lm_eval.base.CachingLM(
+             lm,
+-            "lm_cache/"
+-            + (model if isinstance(model, str) else model.model.config._name_or_path)
+-            + "_"
+-            + model_args.replace("=", "-").replace(",", "_").replace("/", "-")
+-            + ".db",
++            "lm_cache/" + cache_name,
+         )

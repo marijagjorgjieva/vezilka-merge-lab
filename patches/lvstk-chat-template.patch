@@ -1,0 +1,101 @@
+diff --git a/lm_eval/evaluator.py b/lm_eval/evaluator.py
+--- a/lm_eval/evaluator.py
++++ b/lm_eval/evaluator.py
+@@ -206,5 +206,6 @@ def evaluate(
+ 
+     requests = collections.defaultdict(list)
+     requests_origin = collections.defaultdict(list)
++    request_formatter = lm.lm if isinstance(lm, lm_eval.base.CachingLM) else lm
+ 
+     overlaps = collections.defaultdict(list)  # {task_name: contaminated_docs}
+@@ -283,9 +284,17 @@ def evaluate(
+                 requests_origin[req.request_type].append((i, task_name, doc, doc_id))
+ 
+                 if write_out:
+-                    prompt_details[-1][f"prompt_{i}"] = "".join(
+-                        (map(lambda x: "".join(x), req.args))
++                    raw_prompt = "".join((map(lambda x: "".join(x), req.args)))
++                    formatted_args = (
++                        request_formatter.format_request(req.request_type, req.args)
++                        if hasattr(request_formatter, "format_request")
++                        else req.args
+                     )
++                    formatted_prompt = "".join(
++                        (map(lambda x: "".join(x), formatted_args))
++                    )
++                    prompt_details[-1][f"raw_prompt_{i}"] = raw_prompt
++                    prompt_details[-1][f"prompt_{i}"] = formatted_prompt
+ 
+         if write_out:
+             write_out_info[task_name] = prompt_details
+diff --git a/lm_eval/models/huggingface.py b/lm_eval/models/huggingface.py
+--- a/lm_eval/models/huggingface.py
++++ b/lm_eval/models/huggingface.py
+@@ -96,6 +96,8 @@ class HuggingFaceAutoLM(BaseLM):
+         bnb_4bit_quant_type: Optional[str] = None,
+         bnb_4bit_compute_dtype: Optional[Union[str, torch.dtype]] = None,
+         bnb_4bit_use_double_quant: Optional[bool] = False,
++        chat_template: Optional[bool] = False,
++        chat_template_path: Optional[str] = None,
+     ):
+         """Initializes a HuggingFace `AutoModel` and `AutoTokenizer` for evaluation.
+         Args:
+@@ -216,6 +218,19 @@ class HuggingFaceAutoLM(BaseLM):
+             trust_remote_code=trust_remote_code,
+         )
+         self.tokenizer.model_max_length = self.max_length
++        self._use_chat_template = bool(chat_template)
++        self._chat_template_path = chat_template_path
++        if self._use_chat_template:
++            if chat_template_path:
++                template_path = Path(chat_template_path)
++                if not template_path.is_file():
++                    raise ValueError(f"Chat template file does not exist: {template_path}")
++                self.tokenizer.chat_template = template_path.read_text(encoding="utf-8")
++            if not getattr(self.tokenizer, "chat_template", None):
++                raise ValueError(
++                    "Template-conditioned evaluation requires a tokenizer chat template "
++                    "or chat_template_path model argument."
++                )
+ 
+         model_kwargs = {}
+         if use_accelerate:
+@@ -455,9 +470,38 @@ class HuggingFaceAutoLM(BaseLM):
+     def tok_decode(self, tokens: torch.LongTensor) -> List[str]:
+         return self.tokenizer.batch_decode(tokens, skip_special_tokens=True)
+ 
++    def _format_chat_context(self, context: str) -> str:
++        if not self._use_chat_template:
++            return context
++        return self.tokenizer.apply_chat_template(
++            [{"role": "user", "content": context.rstrip()}],
++            tokenize=False,
++            add_generation_prompt=True,
++        )
++
++    def format_request(self, request_type: str, request: tuple) -> tuple:
++        """Return the exact request strings passed to the model."""
++        if not self._use_chat_template:
++            return request
++        if request_type == "loglikelihood":
++            context, continuation = request
++            return self._format_chat_context(context), continuation.lstrip()
++        if request_type == "greedy_until":
++            context, generation_args = request
++            return self._format_chat_context(context), generation_args
++        return request
++
++    def loglikelihood(
++        self, requests: List[Tuple[str, str]]
++    ) -> List[Tuple[float, bool]]:
++        formatted = [self.format_request("loglikelihood", request) for request in requests]
++        return super().loglikelihood(formatted)
++
+     def greedy_until(
+         self, requests: List[Tuple[str, Union[List[str], str]]]
+     ) -> List[str]:
++        requests = [self.format_request("greedy_until", request) for request in requests]
++
+         def _collate(x):
+             tokens = self.tok_encode(x[0])
+             return len(tokens), x[0]

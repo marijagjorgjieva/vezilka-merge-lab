@@ -1,0 +1,29 @@
+{
+  "status": "success",
+  "exit_code": 0,
+  "started_utc": "2026-07-14T15:50:55.759587+00:00",
+  "finished_utc": "2026-07-14T17:18:54.058212+00:00",
+  "duration_seconds": 5278.299,
+  "model_label": "VezilkaLLM-Instruct + English, SLERP t=0.30",
+  "tasks": [
+    "arc_challenge",
+    "arc_easy",
+    "boolq",
+    "hellaswag",
+    "openbookqa",
+    "piqa",
+    "winogrande"
+  ],
+  "limit": null,
+  "device": "cuda:0",
+  "batch_size": "2",
+  "prompt_format": "chat",
+  "write_out": true,
+  "results_json_exists": true,
+  "errors_detected": [],
+  "warnings_detected": [
+    "`torch_dtype` is deprecated! Use `dtype` instead!"
+  ],
+  "configuration": "configs/merge/e2/e2-slerp-030.yaml",
+  "chat_template": "configs/evaluation/gemma_chat_template.jinja"
+}

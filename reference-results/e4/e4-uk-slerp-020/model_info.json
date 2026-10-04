@@ -1,0 +1,5 @@
+{
+  "label": "VezilkaLLM-Instruct + Ukrainian, SLERP t=0.20",
+  "configuration": "configs/merge/e4/e4-uk-slerp-020.yaml",
+  "prompt_format": "plain"
+}
