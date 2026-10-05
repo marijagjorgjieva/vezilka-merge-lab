@@ -32,10 +32,10 @@ The pinned evaluator's `setup.py` requirements must remain covered by
 `requirements.in`. Updating the dependency lock does not rerun historical
 evaluations.
 
-The dataset commit and expected hashes of the six retained benchmark files are
+The dataset commit and expected hashes of the seven benchmark files are
 recorded separately in `configs/model_sources.json`. The dataset patch requires
 that commit SHA and passes it to `datasets.load_dataset`; it never defaults to
-`main` for Macedonian tasks. The initial pinned revision matches the six local
+`main` for Macedonian tasks. The initial pinned revision matches the seven local
 cached benchmark files byte for byte.
 
 Each new evaluation invokes `capture_environment.py` using the evaluator's

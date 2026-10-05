@@ -30,4 +30,4 @@ For a new run, compare the matching task metrics and prompt format with these re
 
 ## Current evaluation scope
 
-The current protocol uses six tasks: ARC Challenge, ARC Easy, HellaSwag, OpenBookQA, PIQA and WinoGrande. Original result JSON and archived run metadata are retained unchanged as historical evidence; comparisons select only these six tasks. Current report macros are recalculated from their unrounded metrics. Historical plain/chat runs used batch sizes 1/2.
+The current protocol uses seven benchmark tasks. Original result JSON and archived run metadata are retained unchanged as historical evidence; comparisons include all seven tasks. Current report macros use their unrounded metrics. Historical plain/chat runs used batch sizes 1/2.

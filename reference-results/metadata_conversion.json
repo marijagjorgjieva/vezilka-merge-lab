@@ -4,7 +4,7 @@
   "results_modified": false,
   "paths": "Repository-relative paths or existing sanitized model placeholders",
   "missing_artifacts": "Original command.json and stdout_stderr.log are not bundled; none were fabricated",
-  "task_scope": "Historical full runs retain seven tasks; current evaluations and summaries use six",
+  "task_scope": "Historical full runs and the current full evaluation protocol use seven tasks",
   "runs": [
     {
       "directory": "baselines/b0-vbase",

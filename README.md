@@ -113,12 +113,12 @@ Use `uv run merge-model <command>`. Each command provides `--help`.
 
 | Option | Values |
 |---|---|
-| `--eval-scope` | `smoke` (default): 10 ARC Easy examples; `full`: all six tasks. |
+| `--eval-scope` | `smoke` (default): 10 ARC Easy examples; `full`: all seven tasks. |
 | `--prompt-format` | `plain` (default), `chat`, or `both` as separate conditions. |
 | `--chat-template` | Path to a custom Jinja template. |
 | `--batch-size` | Evaluation batch size, default `1`. |
 
-Full evaluation covers ARC Challenge, ARC Easy, HellaSwag, OpenBookQA, PIQA, and WinoGrande using a pinned version of the [LVSTCK Macedonian evaluation suite](https://github.com/LVSTCK/macedonian-llm-eval). It is installed on first use with the chat-template and cache-filename patches in `patches/`.
+Full evaluation runs seven zero-shot Macedonian benchmark tasks using a pinned version of the [LVSTCK Macedonian evaluation suite](https://github.com/LVSTCK/macedonian-llm-eval). It is installed on first use with the chat-template, cache-filename, and dataset-revision patches in `patches/`.
 
 The benchmark dataset is pinned to a commit in [model_sources.json](configs/model_sources.json). The evaluator's dataset patch requires that revision when loading Macedonian tasks.
 
@@ -126,7 +126,7 @@ Included configurations use the [fixed Gemma chat template](configs/evaluation/g
 
 Evaluations disable the harness score cache so changes to models or templates at the same path receive fresh scores. Downloaded model files remain cached.
 
-Benchmark accuracy does not measure Macedonian fluency or instruction following. Plain uses no chat template or BOS. Fixed Gemma chat adds BOS and strips leading continuation whitespace. These are separate evaluation conditions; their difference is not an isolated template effect. Scores use `acc_norm` for ARC Challenge, ARC Easy, HellaSwag, OpenBookQA and PIQA, and `acc` for WinoGrande. Any macro summary is the unweighted mean of these six metrics, computed before rounding.
+Benchmark accuracy does not measure Macedonian fluency or instruction following. Plain uses no chat template or BOS. Fixed Gemma chat adds BOS and strips leading continuation whitespace. These are separate evaluation conditions; their difference is not an isolated template effect. The task list is defined in `src/vezilka_merge_lab/config.py`. Scores use `acc_norm` where available and `acc` otherwise. Any macro summary is the unweighted mean of the seven task metrics, computed before rounding.
 
 To evaluate a completed merge, use the run directory printed after `Done:`:
 
