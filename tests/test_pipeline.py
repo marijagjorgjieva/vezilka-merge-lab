@@ -215,17 +215,20 @@ class EvaluationTests(unittest.TestCase):
             merged.mkdir(parents=True)
             (base / "results.json").write_text(json.dumps({"results": {
                 "arc_easy": {"acc": 0.3, "acc_norm": 0.4},
-                "boolq": {"acc": 0.5},
+                "winogrande": {"acc": 0.5},
+                "excluded_task": {"acc": 0.1},
             }}), encoding="utf-8")
             (merged / "results.json").write_text(json.dumps({"results": {
                 "arc_easy": {"acc": 0.9, "acc_norm": 0.45},
-                "boolq": {"acc": 0.6},
+                "winogrande": {"acc": 0.6},
+                "excluded_task": {"acc": 0.9},
             }}), encoding="utf-8")
             write_comparison(root, "full", ["plain"])
             rows = json.loads((root / "evaluation" / "comparison.json").read_text())["prompt_formats"]["plain"]
             self.assertEqual(rows[0]["metric"], "acc_norm")
             self.assertAlmostEqual(rows[0]["delta_percentage_points"], 5.0)
             self.assertEqual(rows[1]["metric"], "acc")
+            self.assertEqual([row["task"] for row in rows], ["arc_easy", "winogrande"])
 
 
 if __name__ == "__main__":

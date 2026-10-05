@@ -3,26 +3,9 @@
   "exit_code": 0,
   "started_utc": "2026-07-13T06:19:37.466152+00:00",
   "finished_utc": "2026-07-13T08:02:37.877591+00:00",
-  "duration_seconds": 6180.411,
-  "model_label": "VezilkaLLM-Instruct + Ukrainian, SLERP t=0.20",
-  "tasks": [
-    "arc_challenge",
-    "arc_easy",
-    "boolq",
-    "hellaswag",
-    "openbookqa",
-    "piqa",
-    "winogrande"
-  ],
-  "limit": null,
-  "device": "cuda:0",
-  "batch_size": "1",
-  "write_out": true,
-  "results_json_exists": true,
-  "errors_detected": [],
-  "warnings_detected": [
-    "`torch_dtype` is deprecated! Use `dtype` instead!"
-  ],
+  "model": "<merged-checkpoint>",
+  "scope": "full",
   "prompt_format": "plain",
-  "configuration": "configs/merge/e4/e4-uk-slerp-020.yaml"
+  "chat_template": "model tokenizer",
+  "results": "reference-results/e4/e4-uk-slerp-020/results.json"
 }

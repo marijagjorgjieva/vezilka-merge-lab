@@ -1,0 +1,28 @@
+{
+  "status": "success",
+  "exit_code": 0,
+  "started_utc": "2026-07-13T02:53:34.589630+00:00",
+  "finished_utc": "2026-07-13T04:36:13.194049+00:00",
+  "duration_seconds": 6158.604,
+  "model_label": "VezilkaLLM-Instruct + Bulgarian, SLERP t=0.40",
+  "tasks": [
+    "arc_challenge",
+    "arc_easy",
+    "boolq",
+    "hellaswag",
+    "openbookqa",
+    "piqa",
+    "winogrande"
+  ],
+  "limit": null,
+  "device": "cuda:0",
+  "batch_size": "1",
+  "write_out": true,
+  "results_json_exists": true,
+  "errors_detected": [],
+  "warnings_detected": [
+    "`torch_dtype` is deprecated! Use `dtype` instead!"
+  ],
+  "prompt_format": "plain",
+  "configuration": "configs/merge/e3/e3-bg-slerp-040.yaml"
+}

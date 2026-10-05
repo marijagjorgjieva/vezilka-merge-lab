@@ -113,16 +113,16 @@ Use `uv run merge-model <command>`. Each command provides `--help`.
 
 | Option | Values |
 |---|---|
-| `--eval-scope` | `smoke` (default): 10 ARC Easy examples; `full`: all seven tasks. |
+| `--eval-scope` | `smoke` (default): 10 ARC Easy examples; `full`: all six tasks. |
 | `--prompt-format` | `plain` (default), `chat`, or `both` as separate conditions. |
 | `--chat-template` | Path to a custom Jinja template. |
 | `--batch-size` | Evaluation batch size, default `1`. |
 
-Full evaluation covers ARC Challenge, ARC Easy, BoolQ, HellaSwag, OpenBookQA, PIQA, and WinoGrande using a pinned version of the [LVSTCK Macedonian evaluation suite](https://github.com/LVSTCK/macedonian-llm-eval). It is installed on first use with the chat-template and cache-filename patches in `patches/`.
+Full evaluation covers ARC Challenge, ARC Easy, HellaSwag, OpenBookQA, PIQA, and WinoGrande using a pinned version of the [LVSTCK Macedonian evaluation suite](https://github.com/LVSTCK/macedonian-llm-eval). It is installed on first use with the chat-template and cache-filename patches in `patches/`.
 
 Included configurations use the [fixed Gemma chat template](configs/evaluation/gemma_chat_template.jinja). Custom runs use the model's tokenizer template unless `--chat-template` is supplied. Results are saved separately for plain and chat prompts.
 
-Benchmark accuracy does not measure Macedonian fluency or instruction following. Plain and chat conditions differ in context and continuation formatting, including leading-whitespace removal in chat scoring; BoolQ comparisons require particular care.
+Benchmark accuracy does not measure Macedonian fluency or instruction following. Plain uses no chat template or BOS. Fixed Gemma chat adds BOS and strips leading continuation whitespace. These are separate evaluation conditions; their difference is not an isolated template effect. Scores use `acc_norm` for ARC Challenge, ARC Easy, HellaSwag, OpenBookQA and PIQA, and `acc` for WinoGrande. Any macro summary is the unweighted mean of these six metrics, computed before rounding.
 
 To evaluate a completed merge, use the run directory printed after `Done:`:
 

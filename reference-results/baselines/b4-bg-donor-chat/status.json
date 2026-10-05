@@ -3,27 +3,9 @@
   "exit_code": 0,
   "started_utc": "2026-07-14T01:28:39.506466+00:00",
   "finished_utc": "2026-07-14T02:47:40.640798+00:00",
-  "duration_seconds": 4741.134,
-  "model_label": "models/bggpt-gemma-3-4b-it-textonly",
-  "tasks": [
-    "arc_challenge",
-    "arc_easy",
-    "boolq",
-    "hellaswag",
-    "openbookqa",
-    "piqa",
-    "winogrande"
-  ],
-  "limit": null,
-  "device": "cuda:0",
-  "batch_size": "2",
+  "model": "<text-only-checkpoint>",
+  "scope": "full",
   "prompt_format": "chat",
-  "write_out": true,
-  "results_json_exists": true,
-  "errors_detected": [],
-  "warnings_detected": [
-    "`torch_dtype` is deprecated! Use `dtype` instead!"
-  ],
-  "model": "models/bggpt-gemma-3-4b-it-textonly",
-  "chat_template": "configs/evaluation/gemma_chat_template.jinja"
+  "chat_template": "configs/evaluation/gemma_chat_template.jinja",
+  "results": "reference-results/baselines/b4-bg-donor-chat/results.json"
 }

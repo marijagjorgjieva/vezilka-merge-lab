@@ -1,0 +1,28 @@
+{
+  "status": "success",
+  "exit_code": 0,
+  "started_utc": "2026-07-08T00:33:46.689924+00:00",
+  "finished_utc": "2026-07-08T02:00:09.891248+00:00",
+  "duration_seconds": 5183.201,
+  "model_label": "Leoxxxxh/Gemma-3-4B-IT-TextOnly",
+  "tasks": [
+    "arc_challenge",
+    "arc_easy",
+    "boolq",
+    "hellaswag",
+    "openbookqa",
+    "piqa",
+    "winogrande"
+  ],
+  "limit": null,
+  "device": "cuda:0",
+  "batch_size": "1",
+  "write_out": true,
+  "results_json_exists": true,
+  "errors_detected": [],
+  "warnings_detected": [
+    "`torch_dtype` is deprecated! Use `dtype` instead!"
+  ],
+  "prompt_format": "plain",
+  "model": "Leoxxxxh/Gemma-3-4B-IT-TextOnly"
+}

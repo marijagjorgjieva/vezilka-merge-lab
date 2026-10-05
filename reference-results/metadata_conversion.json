@@ -1,0 +1,286 @@
+{
+  "conversion": "Historical status metadata mapped to the current CLI status schema",
+  "evaluations_rerun": false,
+  "results_modified": false,
+  "paths": "Repository-relative paths or existing sanitized model placeholders",
+  "missing_artifacts": "Original command.json and stdout_stderr.log are not bundled; none were fabricated",
+  "task_scope": "Historical full runs retain seven tasks; current evaluations and summaries use six",
+  "runs": [
+    {
+      "directory": "baselines/b0-vbase",
+      "results_sha256": "7d6ad1fb9ff188f3dddba0280703fc2ace6a233d6d63a6af06871ec44d33c718",
+      "original_status_sha256": "c03b7ea512dad03f129e20801725b4ab566852e415cecfed3af41d4ba4a6d317",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "baselines/b1-vbase-chat",
+      "results_sha256": "fdc886a4840819fb73e6fc75113eb97dbe07d5a1c281fa82224206284cf60bc4",
+      "original_status_sha256": "00c249208a4d433731c4690517e4e866c88622e58f04164be57f42c0762947ab",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "baselines/b2-vinstruct",
+      "results_sha256": "54307fa1d0f4e05318b00a30937e9405b31870eedcd0b8a41d89e4b7f1a62892",
+      "original_status_sha256": "01d6ff3963a4b1b009fc099c96241db962ac7feed601f8c4a0b25ba34631d623",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "baselines/b2-vinstruct-chat",
+      "results_sha256": "8906574968644e32c60937559b7a9ee4ba0b4720063dfd42dcc312fc37432276",
+      "original_status_sha256": "06ebb4b8f006149b7a3b6fe88f5e9578e71a3abf149d7828ba9a5e2f54feff8c",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "baselines/b3-eng-donor",
+      "results_sha256": "4fc274d701496642462c1fdef37e58696a5b6d86b74f2337563ce4ca37ae03b1",
+      "original_status_sha256": "43b3ca0e445922876d102c4225e97652234848ca8518aaa3b432a0963a4296e9",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "baselines/b3-eng-donor-chat",
+      "results_sha256": "b11a287fc04ceeeff176d076804bc1eff9827a2c1491f615f5b030be808d1e45",
+      "original_status_sha256": "cacf9609555db198da541ac9c026f2882fa10351e889c91a8bee90569f16e326",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "baselines/b4-bg-donor",
+      "results_sha256": "b497cdf3833d10b1d379ebe21a0dbec5e8552b5e1774fe720fafb20ffa460b46",
+      "original_status_sha256": "ea75ea099417b668c83f9ab624eaad9bfac43d22b3c7966cec781870745f67b3",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "baselines/b4-bg-donor-chat",
+      "results_sha256": "d946add821906c55a48321078b8428a5ed2c59570925aea8f11f29e66816737b",
+      "original_status_sha256": "26dc84ec90b3572fa161a7f68ad20832b4c65fc2014417f27de1999a973eab24",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "baselines/b5-uk-donor",
+      "results_sha256": "c7f405985d433f8818b2d711de865d96a4adc04029bbc6811c09ad98a1d7a816",
+      "original_status_sha256": "6767a59dfcc4eca2512519b5acf2af59deb4437582ca6ad7f09746974ea17331",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "baselines/b5-uk-donor-chat",
+      "results_sha256": "a45c8e4a5d7256c0f0b79ff0802fb685e8153e65a0b38a59b1a3a3e99895fc8d",
+      "original_status_sha256": "8dfc5c3fd2d2c74a5316328e1d1f8d9deb7f13917622eb436ad5b82171c98399",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e1/e1-slerp-005",
+      "results_sha256": "5d26fa669530f1dc90bbca430f2c549df17a0589937ead83818d0bf30e5bdc51",
+      "original_status_sha256": "b2bffe7f61fa5712fc22d66bf25e73ae821d04812ab6dad6fd96bbbfed685ccc",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e1/e1-slerp-005-chat",
+      "results_sha256": "d452b42638696ecfb3401e5dc20213d5705161744e0e99b8f023610838632236",
+      "original_status_sha256": "f8aa959671e1890c88a42fbb6bbe6df50fa115edb29838856811ca0b8cf7d2f3",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e1/e1-slerp-015",
+      "results_sha256": "cfeeb3e691b439123ca7b9aaf3c10b5cd240a878e30f67ffa93d681901e69362",
+      "original_status_sha256": "2a93e344182dcf61f803589afbe66064c73f39385491d00f1b1c9ad8f75fe657",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e1/e1-slerp-015-chat",
+      "results_sha256": "70e18167c974a22155d6e6230b256762485fc5a288396329707c42cf176fac1f",
+      "original_status_sha256": "438155b8e5f977bb4f009b482b993fb98382434d0f4bb7d964a0f5af5d7eb426",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e1/e1-slerp-025",
+      "results_sha256": "d52fbfe7a93b42924c3d9ad63af41d6956c5464566d6b346deab6e773d46e5cf",
+      "original_status_sha256": "c7be34a12f82b6a2ade5670e49bab8734ac4c28d84a25ab5e0df50b084a82dd2",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e1/e1-slerp-025-chat",
+      "results_sha256": "264c45bc0631ac92b8522037989481155adc59dfe2e8f410c2d94b7e51080dcf",
+      "original_status_sha256": "a8af2853106c17130598a191c4732c7d3d214805e34d3ec06de6e7730519f0d5",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e1/e1-slerp-040",
+      "results_sha256": "aa6e67fccc3c10ecaa52ff52fa939521d39cfac9c9d62131890e2918044e1ade",
+      "original_status_sha256": "6d2d442a97056e487468f37131d05ef1ad23e8a82e03bd1d981cf7536d0a475e",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e1/e1-slerp-040-chat",
+      "results_sha256": "b4a774bcfb5b98c432863deef3a37e0610d7829fb5359f3b4876d70b39fad6ca",
+      "original_status_sha256": "c1edf2e4490ad5b5b162e4bebc18f82f4d610fb1afe2060ef0155d038d89c999",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e2/e2-grad-020",
+      "results_sha256": "73ab4523e19c25a3b6fa9ad4d67ff50188a6fd92d7d83203342d2b12a3cb7a12",
+      "original_status_sha256": "aca369df4a1767adf8fdeca8bdf0691f53039917c281f4938e16d7f82cb717de",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e2/e2-grad-020-chat",
+      "results_sha256": "b7b396740f444c2e241d6643c04b833e4a59b84a993ba03ce5a85b8788998e6b",
+      "original_status_sha256": "b9cf80a8c9f31e2410802ce688188fa6c7ca27e43c37ec04da21f21eefda3e41",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e2/e2-slerp-005",
+      "results_sha256": "570dd5a7daabc5d3b40da9b127a5f1a990e3f9daa26e4433784fd0e992790fd2",
+      "original_status_sha256": "e23c721263fcedb669b0ec5939e8618ef1273e7ca10b3204c8c48632a7633fff",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e2/e2-slerp-005-chat",
+      "results_sha256": "5515681a457189d2f3108c86ea7a26f25681991693cdbf03847f76da8feb7866",
+      "original_status_sha256": "600f0b635a9df61349bccaec9a52e90efab53436c7fa59efcbb06d6c9f5752e8",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e2/e2-slerp-015",
+      "results_sha256": "0b7e813dab911ff0d59ce36d46764cee52d7d3e61ca4b262282c2121dcd0937b",
+      "original_status_sha256": "3d2589f3abf8e662624496e51c1f10eb9c6799000aa216d6cd923450b43150b0",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e2/e2-slerp-015-chat",
+      "results_sha256": "6b3d0229b5dfd7d451f0938886eb528c0a62aea4494323a3181073dbed822e4d",
+      "original_status_sha256": "2816eb68e1acc3b430ee8a4a8d6cecb107a6391560c78271650891ecb0da0a3e",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e2/e2-slerp-020",
+      "results_sha256": "d9c9bc42b0e1292d021fba089ce4aef7298b662ed1e35a7814a2ad45967cd70c",
+      "original_status_sha256": "b67f29ec3c478a3835fe740c8fc2855b53ad0f7619ae66ecb8611baac57a93c1",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e2/e2-slerp-020-chat",
+      "results_sha256": "0f3786f2c93467671edbdc93cc37a67d5243759798b41b047ad46d9ed3c5b830",
+      "original_status_sha256": "eb6b77ecaf3771c2b337d6cb964850d191894ec57b7b6e8d820d1d6017499376",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e2/e2-slerp-025",
+      "results_sha256": "80ed0b83d528b2cac5582e4ce43211d2cccbfc2639984033bd6d18487db05a99",
+      "original_status_sha256": "5075c6cd8d28633acbbf050d4db8ecbe0d2df93941e23971694d1ad16ce4ca65",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e2/e2-slerp-025-chat",
+      "results_sha256": "448a243211e532500d81a61c04c812b0db24ec48f3cbfb6410f072a50cf6cf7c",
+      "original_status_sha256": "ef7ed2ffb13b663acce01cd455921e51df1210bf65a97c78a082a97dd398a68e",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e2/e2-slerp-030",
+      "results_sha256": "c34015572f9e3f9996e8e6770c946e41671ee62f67a8ab25658b91bb4bdafdda",
+      "original_status_sha256": "d779381b3ed7d4f4d438051098fa859f4825653809970419d9e8625e94f865d4",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e2/e2-slerp-030-chat",
+      "results_sha256": "90d7bc35e87a44f60a2a3dce0af163a804367310d5aa1d0a33bf66f08a8c8fdb",
+      "original_status_sha256": "71d0f2f1f7354830018925bebd108e984758eb05e054604dc7bfc92d992a7494",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e2/e2-slerp-040",
+      "results_sha256": "1e5a5d549c8a9c74effc1ddc0fd45278b0237d4e44fa9d3ee95c79940418e4f8",
+      "original_status_sha256": "330a821ffb7c77cd724bf92fbfe96b1bc20e9dffdb2455ded6d83be45302608a",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e2/e2-slerp-040-chat",
+      "results_sha256": "f9008589d4f36050499ed03333ab482deebc653fb3215ffcc809c8337edf72a5",
+      "original_status_sha256": "ab99019b61dfb037a9b94ca8bce023c5132b5c201b841b7886f53b9fba4db2f0",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e3/e3-bg-slerp-005",
+      "results_sha256": "acb13681700b2e21b11369cbb98682ff39edcc96504a21c8dc0e60ad8e31d7db",
+      "original_status_sha256": "d9be9669cb021092e57bffea478eb01fcb37e05cd2348c9ba48a80e139290927",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e3/e3-bg-slerp-005-chat",
+      "results_sha256": "90413e2211e3cbe05c9e15aa213d2cd34c5ee31f5eaa8b27b19a9bc9fc9eee7b",
+      "original_status_sha256": "064f9fdc713d08408c2c6a299ece9c155354ce4a523ca9480c34700b0ad62d1c",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e3/e3-bg-slerp-020",
+      "results_sha256": "103627bedde63473daf299b2477c62fb0258c92d271e8ad722210bd47f64ba1c",
+      "original_status_sha256": "ea69930a513601763ed076b9ce6abc5ccda54a3e1cc76bb72a52d49f92b618dd",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e3/e3-bg-slerp-020-chat",
+      "results_sha256": "e2e3f099e280c0adc49e7ff09cc8032dcde7781b0e5f104e497d76f13f54f7ec",
+      "original_status_sha256": "bbc79424e9fe4cb50bec5e6add692983d9b3a776cdecb6ab280ac527227268bf",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e3/e3-bg-slerp-030",
+      "results_sha256": "7342fea57b70ac033addc71c988a05c588e8c2595f56627fa6de18529985cca1",
+      "original_status_sha256": "57fdd327830c3cb9f0d4d7f94384646c58429cde5df5ce993df4e43c07ab20a9",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e3/e3-bg-slerp-030-chat",
+      "results_sha256": "052d0cb0212efe7beccb663d6588ae525603829008e0f3960b1ae1360f469ba7",
+      "original_status_sha256": "c0264fd8a6a0e9c212837eb81e6c5beb8a144ec8baa122c832fb925e0d4a537c",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e3/e3-bg-slerp-040",
+      "results_sha256": "38b5d4dcadb4654e977476ae006db1697635178e851dad12424f5082f04dc012",
+      "original_status_sha256": "8aa5ead227b549ad867a30279e07efb10ba1510f1ba86580a9d9958dea0b35e9",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e3/e3-bg-slerp-040-chat",
+      "results_sha256": "1588f152ac3bf1a079b8b30dccfc74e6472dccbed5f01ee8e419e06e91bde420",
+      "original_status_sha256": "3315060e245ce3616d8109af8cc43f9cbae9f0c60cd43552d2b98c6a955582a2",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e3/e3-bg-ties-025",
+      "results_sha256": "20c22786bbcc207d9e79d7ba5cd225080b4c27a19540b80b0b190defc29a3bf4",
+      "original_status_sha256": "36d56c9bce73f436efd680c658b528457cdc7b796883273e07f17f6363413e3a",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e3/e3-bg-ties-025-chat",
+      "results_sha256": "eb21876ddaeba3f0491c021a82e3822f647c00e6dabb261c052f948360b54993",
+      "original_status_sha256": "ca0a0ae5f69799c3059759359e135d970b2759cfb486c4635bb620bb422f24e3",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e4/e4-uk-slerp-020",
+      "results_sha256": "b3ef8bbe6c7f0fd7dec4b2c02a4cee2b84049ae190135f55b434369f47434f77",
+      "original_status_sha256": "d223c9999a93f28edf745550c7f345e5a0eb1e3285ed43610ea8d59a7f0653d0",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e4/e4-uk-slerp-020-chat",
+      "results_sha256": "5d8838e8578e53c8e1034659fa22ac477a5a785fd1e3cd73fb056ca85e79309b",
+      "original_status_sha256": "70db98f34ffba65ebd4e83afda80b6f6a917dd7d22b79189d957d6b76b278a4e",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e4/e4-uk-slerp-040",
+      "results_sha256": "2dbcea775ad369feb876437ac337eae98760fa7be6b6025a032bb563e4dce3c8",
+      "original_status_sha256": "020a26a496f61cf980d800b76b85c11aad5baf39fe68372f425cea2761c4f203",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    },
+    {
+      "directory": "e4/e4-uk-slerp-040-chat",
+      "results_sha256": "23863535ea7bff5c62b015c45693a27f8c8fee97aeb24e17da62509889c38723",
+      "original_status_sha256": "77c5407eb1cfb48773d139c8617f2aae0fbf69df7f3e7909c28f6fa2321c9d1c",
+      "original_environment_sha256": "f0a00362c8f1ab515185b7719fb4f55fdfde7390adfbc8a76efdfd2a193f57b7"
+    }
+  ]
+}

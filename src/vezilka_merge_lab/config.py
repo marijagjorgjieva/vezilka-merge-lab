@@ -14,7 +14,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 CONFIG_DIR = ROOT / "configs" / "merge"
 SOURCE_REGISTRY = ROOT / "configs" / "model_sources.json"
-FULL_TASKS = "arc_challenge,arc_easy,boolq,hellaswag,openbookqa,piqa,winogrande"
+FULL_TASKS = "arc_challenge,arc_easy,hellaswag,openbookqa,piqa,winogrande"
 
 
 def load_registry() -> dict[str, Any]:

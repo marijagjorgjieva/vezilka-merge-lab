@@ -147,7 +147,7 @@ def write_comparison(run_dir: Path, scope: str, prompts: list[str]) -> Path:
         merged_results = json.loads(merged_path.read_text(encoding="utf-8"))["results"]
         rows = []
         lines.extend([f"## {prompt}", "", "| Task | Metric | Base | Merged | Change (pp) |", "|---|---|---:|---:|---:|"])
-        for task in sorted(set(base_results) & set(merged_results)):
+        for task in sorted(set(FULL_TASKS.split(",")) & set(base_results) & set(merged_results)):
             metric = "acc_norm" if "acc_norm" in base_results[task] and "acc_norm" in merged_results[task] else "acc"
             base_score = base_results[task][metric]
             merged_score = merged_results[task][metric]
