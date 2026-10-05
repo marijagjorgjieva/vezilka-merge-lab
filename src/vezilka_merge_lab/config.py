@@ -62,6 +62,8 @@ def validate_config(config: dict[str, Any]) -> None:
         entries = [item["model"] if isinstance(item, dict) else item for item in config["models"]]
         if config["base_model"] not in entries:
             raise ValueError("SLERP models must include the base_model")
+        if entries[0] == entries[1]:
+            raise ValueError("SLERP requires two distinct model references; self-merges are not supported")
         t_values = config["parameters"].get("t")
         if not isinstance(t_values, list):
             raise ValueError("SLERP parameters.t must be a list")
@@ -73,6 +75,21 @@ def validate_config(config: dict[str, Any]) -> None:
         )
         if not protected:
             raise ValueError("SLERP must protect embed_tokens at 0.0")
+        # MergeKit uses the first matching filter, including defaults and '*'.
+        embedding_rule = next(
+            item for item in t_values
+            if isinstance(item, dict)
+            and (
+                item.get("filter") is None
+                or item.get("filter") == "*"
+                or (
+                    isinstance(item.get("filter"), str)
+                    and item["filter"] in "model.embed_tokens.weight"
+                )
+            )
+        )
+        if embedding_rule.get("value") != 0.0:
+            raise ValueError("The first SLERP t rule matching embed_tokens must set value to 0.0")
 
 
 def custom_slerp(base: str, donor: str, t: float) -> dict[str, Any]:

@@ -1,0 +1,30 @@
+# Python 3.11 evaluator dependencies for LVSTCK commit
+# b3652fc5ea759559adb049227a3c5a160859be35.
+# Regenerate requirements.lock with uv pip compile --generate-hashes.
+torch==2.12.1
+transformers==4.57.6
+datasets==2.14.6
+peft==0.19.1
+accelerate==1.14.0
+numpy==1.26.4
+pyarrow==14.0.2
+huggingface-hub==0.36.2
+fsspec==2023.10.0
+# Pin the build backend used to install the local evaluator without isolation.
+setuptools==81.0.0
+# Remaining install_requires from the pinned evaluator's setup.py.
+einops
+importlib-resources
+jsonlines
+numexpr
+openai>=0.6.4
+omegaconf>=2.2
+pybind11>=2.6.2
+pycountry
+pytablewriter
+rouge-score>=0.0.4
+sacrebleu==1.5.0
+scikit-learn>=0.24.1
+sqlitedict
+tqdm-multiprocess
+zstandard

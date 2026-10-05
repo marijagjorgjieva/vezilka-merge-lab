@@ -7,7 +7,7 @@ The repository includes 18 merge configurations and 46 reference result sets. It
 ## Requirements
 
 - Linux, git, [uv](https://docs.astral.sh/uv/), and network access for initial downloads.
-- Python 3.13 for the CLI. The evaluator uses a separate Python 3.11 environment, created automatically on first use.
+- Python 3.13 for the CLI, locked by `uv.lock`. The evaluator uses a separate Python 3.11 environment with its own [dependency lock](evaluator/README.md), created automatically on first use and synced before evaluation.
 - A CUDA GPU for the examples below. CPU execution is available with `--device cpu`.
 - Tens of gigabytes of disk space for source models, merged weights, and evaluation outputs.
 - Hugging Face access to the selected models, including a token and accepted model terms where required.
@@ -120,7 +120,11 @@ Use `uv run merge-model <command>`. Each command provides `--help`.
 
 Full evaluation covers ARC Challenge, ARC Easy, HellaSwag, OpenBookQA, PIQA, and WinoGrande using a pinned version of the [LVSTCK Macedonian evaluation suite](https://github.com/LVSTCK/macedonian-llm-eval). It is installed on first use with the chat-template and cache-filename patches in `patches/`.
 
+The benchmark dataset is pinned to a commit in [model_sources.json](configs/model_sources.json). The evaluator's dataset patch requires that revision when loading Macedonian tasks.
+
 Included configurations use the [fixed Gemma chat template](configs/evaluation/gemma_chat_template.jinja). Custom runs use the model's tokenizer template unless `--chat-template` is supplied. Results are saved separately for plain and chat prompts.
+
+Evaluations disable the harness score cache so changes to models or templates at the same path receive fresh scores. Downloaded model files remain cached.
 
 Benchmark accuracy does not measure Macedonian fluency or instruction following. Plain uses no chat template or BOS. Fixed Gemma chat adds BOS and strips leading continuation whitespace. These are separate evaluation conditions; their difference is not an isolated template effect. Scores use `acc_norm` for ARC Challenge, ARC Easy, HellaSwag, OpenBookQA and PIQA, and `acc` for WinoGrande. Any macro summary is the unweighted mean of these six metrics, computed before rounding.
 
@@ -140,9 +144,13 @@ Runs are saved under `artifacts/runs/`. A successful run prints `Done:` followed
 |---|---|
 | `merged-model/` | Merged checkpoint and tokenizer. |
 | `manifest.json` | Run settings, resolved source revisions, and status. |
+| `source_merge.yaml` | Original input YAML, or generated configuration for a direct command. |
+| `effective_merge.yaml` | Configuration after model overrides; its configuration hash is recorded in the manifest. |
+| `resolved_merge.yaml` | Configuration with prepared local model paths, passed to MergeKit. |
 | `merge_stdout_stderr.log` | Merge log. |
 | `evaluation/comparison.md` | Recipient and merged scores, with differences in percentage points. |
 | `evaluation/base/` and `evaluation/merged/` | Benchmark results and logs. |
+| `evaluation/<model>/<prompt>/environment.json` | Actual evaluator Python/packages, GPU/driver/CUDA details, dataset revision, settings and lock/patch/template hashes. Unavailable hardware details are recorded as errors. |
 
 ## Troubleshooting
 

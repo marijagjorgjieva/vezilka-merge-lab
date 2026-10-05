@@ -24,5 +24,17 @@
     "repository": "https://github.com/LVSTCK/macedonian-llm-eval",
     "revision": "b3652fc5ea759559adb049227a3c5a160859be35",
     "python": "3.11"
+  },
+  "dataset": {
+    "repository": "LVSTCK/macedonian-llm-eval",
+    "revision": "25c6c7e599c58c62030e7a24f6a2eb7deceeeb18",
+    "files_sha256": {
+      "arc_challenge_test_mk.jsonl": "b3457a33028ae596154dc3d7490f06084d5fb3596d02a1a09e8dcb0927f857ac",
+      "arc_easy_test_mk.jsonl": "998e064d20f7c06e91829d22d71966f0c9e5804c9bc0079233915d3156c57699",
+      "hellaswag_test_mk.jsonl": "a9c1007fc873c83e055c57b115ea2560bc7ad2ba2d57361f670d0439189ea401",
+      "openbookqa_test_mk.jsonl": "a2652f0e0ca9bfd532273a6fd09e52bb6fce1e4c936b4ef6de185c4e94d5d66e",
+      "piqa_test_mk.jsonl": "2df11d7bde69a3b16789fce0ddc8c11ca0fed65adfd6234a2e8800ad4a8afb62",
+      "winogrande_test_mk.jsonl": "7f2fac55afa58b28187a167be611ea4e4e09f8bfe77bc76a2160dc26d6eb3bfe"
+    }
   }
 }

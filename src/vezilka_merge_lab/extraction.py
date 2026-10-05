@@ -74,6 +74,11 @@ def extract_tensors(source_dir: Path, output_dir: Path) -> tuple[int, int]:
         if tensors:
             save_file(tensors, output_shard, metadata={"format": "pt"})
 
+    if tensor_count == 0:
+        raise ValueError(
+            f"No text tensors found in {source_dir}; expected language_model.* tensor names"
+        )
+
     index = {
         "metadata": {
             "total_size": total_size,

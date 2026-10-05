@@ -1,0 +1,25 @@
+diff --git a/lm_eval/base.py b/lm_eval/base.py
+--- a/lm_eval/base.py
++++ b/lm_eval/base.py
+@@ -540,6 +540,13 @@ class Task(abc.ABC):
+             - `datasets.DownloadMode.FORCE_REDOWNLOAD`
+                 Fresh download and fresh dataset.
+         """
++        dataset_kwargs = {}
++        if self.DATASET_PATH == "LVSTCK/macedonian-llm-eval":
++            revision = os.environ.get("VEZILKA_DATASET_REVISION", "")
++            if not re.fullmatch(r"[0-9a-f]{40}", revision):
++                raise ValueError("VEZILKA_DATASET_REVISION must be a dataset commit SHA")
++            dataset_kwargs["revision"] = revision
++
+         self.dataset = datasets.load_dataset(
+             path=self.DATASET_PATH,
+             name=self.DATASET_NAME,
+@@ -547,6 +554,7 @@ class Task(abc.ABC):
+             data_dir=data_dir,
+             cache_dir=cache_dir,
+             download_mode=download_mode,
++            **dataset_kwargs,
+         )
+ 
+     def should_decontaminate(self):

@@ -214,11 +214,19 @@ def _execute(args: argparse.Namespace) -> int:
         shutil.copy2(source_yaml, original)
     else:
         original.write_text(yaml.safe_dump(config, sort_keys=False), encoding="utf-8")
+    effective_yaml = run_dir / "effective_merge.yaml"
+    effective_yaml.write_text(yaml.safe_dump(config, sort_keys=False), encoding="utf-8")
     manifest: dict[str, Any] = {
         "status": "preparing",
         "command": args.command,
         "label": label,
         "source_yaml": str(source_yaml) if source_yaml else None,
+        "effective_yaml": str(effective_yaml),
+        "model_overrides": {
+            name: value for name, value in (
+                ("base_model", args.base_model), ("donor_model", args.donor_model)
+            ) if source_yaml and value is not None
+        },
         "bundled_configuration": bundled,
         "config_sha256": config_digest(config),
         "started_utc": dt.datetime.now(dt.timezone.utc).isoformat(),

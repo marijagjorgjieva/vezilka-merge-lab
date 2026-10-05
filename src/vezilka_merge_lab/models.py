@@ -5,6 +5,7 @@ from __future__ import annotations
 import copy
 import json
 import os
+import tempfile
 from pathlib import Path
 from typing import Any
 
@@ -40,32 +41,56 @@ def _download(repo: str, revision: str | None) -> Path:
     )
 
 
+def _validate_extracted(model_dir: Path) -> None:
+    metadata = json.loads((model_dir / "extraction.json").read_text(encoding="utf-8"))
+    count = metadata.get("tensor_count")
+    if type(count) is not int or count <= 0:
+        raise ValueError("Extraction must contain a positive tensor_count")
+    index = json.loads((model_dir / "model.safetensors.index.json").read_text(encoding="utf-8"))
+    if not isinstance(index.get("weight_map"), dict) or not index["weight_map"]:
+        raise ValueError("Extraction must contain a nonempty tensor index")
+    if len(_tensor_shapes(model_dir)) != count:
+        raise ValueError("Extraction tensor_count does not match checkpoint shards")
+    if not (model_dir / "config.json").is_file():
+        raise ValueError("Extraction is missing config.json")
+    if not any((model_dir / name).is_file() for name in ("tokenizer.json", "tokenizer.model")):
+        raise ValueError("Extraction is missing tokenizer files")
+
+
 def _extract_known(source: dict[str, str], prepared_root: Path) -> dict[str, Any]:
     raw = _download(source["source"], source["revision"])
     target = prepared_root / f"{source['prepared_name']}-{raw.name[:12]}"
-    if not (target / "model.safetensors.index.json").is_file():
-        if target.exists():
-            raise ValueError(f"Incomplete prepared model at {target}; move it aside before retrying")
-        target.mkdir(parents=True)
-        text_config = extraction.text_config_from_multimodal(raw / "config.json")
-        (target / "config.json").write_text(
-            json.dumps(text_config, indent=2, sort_keys=True) + "\n", encoding="utf-8"
-        )
-        copied = extraction.copy_tokenizer_files(raw, target)
-        count, size = extraction.extract_tensors(raw, target)
-        (target / "extraction.json").write_text(
-            json.dumps(
-                {
-                    "source": source["source"],
-                    "revision": raw.name,
-                    "tensor_count": count,
-                    "tensor_bytes": size,
-                    "tokenizer_files": copied,
-                },
-                indent=2,
-            ) + "\n",
-            encoding="utf-8",
-        )
+    if target.exists():
+        try:
+            _validate_extracted(target)
+        except (ValueError, OSError, KeyError) as error:
+            raise ValueError(f"Invalid prepared model at {target}; move it aside before retrying: {error}") from error
+    else:
+        prepared_root.mkdir(parents=True, exist_ok=True)
+        with tempfile.TemporaryDirectory(prefix=".extract-", dir=prepared_root) as tmp:
+            staging = Path(tmp) / "model"
+            staging.mkdir()
+            text_config = extraction.text_config_from_multimodal(raw / "config.json")
+            (staging / "config.json").write_text(
+                json.dumps(text_config, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+            )
+            copied = extraction.copy_tokenizer_files(raw, staging)
+            count, size = extraction.extract_tensors(raw, staging)
+            (staging / "extraction.json").write_text(
+                json.dumps(
+                    {
+                        "source": source["source"],
+                        "revision": raw.name,
+                        "tensor_count": count,
+                        "tensor_bytes": size,
+                        "tokenizer_files": copied,
+                    },
+                    indent=2,
+                ) + "\n",
+                encoding="utf-8",
+            )
+            _validate_extracted(staging)
+            staging.rename(target)
     return {
         "repo": source["source"],
         "revision": raw.name,
