@@ -183,6 +183,22 @@ def _merge(resolved_yaml: Path, output: Path, device: str, log: Path) -> None:
     print(f"Merging → {output}", flush=True)
     with log.open("w", encoding="utf-8") as stream:
         result = subprocess.run(command, cwd=ROOT, stdout=stream, stderr=subprocess.STDOUT, check=False)
+    attempts = [{"command": command.copy(), "exit_code": result.returncode, "log": str(log)}]
+    failure_text = log.read_text(encoding="utf-8", errors="replace") if result.returncode else ""
+    if result.returncode and device.startswith("cuda") and "CUDA out of memory" in failure_text:
+        cuda_log = log.with_name(f"{log.stem}.cuda{log.suffix}")
+        log.rename(cuda_log)
+        attempts[0]["log"] = str(cuda_log)
+        # Preserve partial GPU output and start the CPU attempt in an empty directory.
+        if output.exists():
+            output.rename(output.with_name(f"{output.name}.cuda-failed"))
+        command = [argument for argument in command if argument != "--cuda"]
+        _write_json(log.with_name("merge_command.json"), command)
+        print("CUDA merge ran out of memory; retrying merge on CPU. Evaluation keeps the requested device.", flush=True)
+        with log.open("w", encoding="utf-8") as stream:
+            result = subprocess.run(command, cwd=ROOT, stdout=stream, stderr=subprocess.STDOUT, check=False)
+        attempts.append({"command": command.copy(), "exit_code": result.returncode, "log": str(log)})
+    _write_json(log.with_name("merge_attempts.json"), attempts)
     if result.returncode:
         raise RuntimeError(f"MergeKit exited with code {result.returncode}; see {log}")
     if not (output / "config.json").is_file():

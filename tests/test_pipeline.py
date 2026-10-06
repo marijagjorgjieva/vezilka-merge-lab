@@ -15,11 +15,58 @@ import torch
 from safetensors import safe_open
 from safetensors.torch import save_file
 
-from vezilka_merge_lab.cli import _previous_run_models, main
+from vezilka_merge_lab.cli import _merge, _previous_run_models, main
 from vezilka_merge_lab.config import CONFIG_DIR, ROOT, config_digest, custom_slerp, load_yaml, override_slerp_models, validate_config
 from vezilka_merge_lab.evaluation import EVALUATOR_LOCK, _evaluate_one, _record_environment, ensure_evaluator, write_comparison
 from vezilka_merge_lab.extraction import extract_tensors
 from vezilka_merge_lab.models import _extract_known, check_compatibility
+
+
+class MergeFallbackTests(unittest.TestCase):
+    def test_cuda_oom_retries_cpu_and_preserves_failed_output(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp).resolve()
+            output = root / "merged-model"
+            log = root / "merge_stdout_stderr.log"
+            def run(command, **kwargs):
+                output.mkdir()
+                if "--cuda" in command:
+                    (output / "partial").write_text("unfinished")
+                    kwargs["stdout"].write("torch.OutOfMemoryError: CUDA out of memory\n")
+                    return subprocess.CompletedProcess(command, 1)
+                (output / "config.json").write_text("{}")
+                return subprocess.CompletedProcess(command, 0)
+            with patch("vezilka_merge_lab.cli.subprocess.run", side_effect=run) as process:
+                _merge(root / "resolved.yaml", output, "cuda:0", log)
+            self.assertEqual(process.call_count, 2)
+            self.assertNotIn("--cuda", process.call_args.args[0])
+            self.assertTrue((root / "merged-model.cuda-failed" / "partial").is_file())
+            attempts = json.loads((root / "merge_attempts.json").read_text())
+            self.assertEqual([attempt["exit_code"] for attempt in attempts], [1, 0])
+            self.assertIn("CUDA out of memory", Path(attempts[0]["log"]).read_text())
+
+    def test_other_errors_and_cpu_oom_do_not_retry(self) -> None:
+        for device, message in (("cuda:0", "Invalid config"), ("cpu", "CUDA out of memory")):
+            with self.subTest(device=device), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                def run(command, **kwargs):
+                    kwargs["stdout"].write(message)
+                    return subprocess.CompletedProcess(command, 1)
+                with patch("vezilka_merge_lab.cli.subprocess.run", side_effect=run) as process:
+                    with self.assertRaisesRegex(RuntimeError, "MergeKit exited"):
+                        _merge(root / "resolved.yaml", root / "merged-model", device, root / "merge.log")
+                self.assertEqual(process.call_count, 1)
+
+    def test_failed_cpu_retry_stops_run(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            def run(command, **kwargs):
+                kwargs["stdout"].write("CUDA out of memory" if "--cuda" in command else "CPU allocation failed")
+                return subprocess.CompletedProcess(command, 1)
+            with patch("vezilka_merge_lab.cli.subprocess.run", side_effect=run) as process:
+                with self.assertRaisesRegex(RuntimeError, "MergeKit exited"):
+                    _merge(root / "resolved.yaml", root / "merged-model", "cuda:0", root / "merge.log")
+            self.assertEqual(process.call_count, 2)
 
 
 class EnvironmentTests(unittest.TestCase):

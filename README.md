@@ -14,6 +14,8 @@ The repository includes 18 merge configurations and 46 reference result sets. It
 
 Minimum RAM and VRAM requirements have not been measured for this package. Runtime depends on hardware, downloads, and evaluator caching. `doctor` reports CUDA availability and free disk space.
 
+If a CUDA merge runs out of GPU memory, the CLI retries the merge once on CPU. Evaluation keeps the requested device. Both attempts are recorded in `merge_attempts.json`; the CUDA log and partial output are preserved. Other merge errors stop the run.
+
 ## Setup
 
 Run these commands from the repository root:
